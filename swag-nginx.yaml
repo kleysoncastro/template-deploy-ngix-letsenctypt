@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    container_name: swag
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Sao_Paulo
+      - URL=deploy.allca.eng.br
+      - SUBDOMAINS=wildcard
+      - VALIDATION=dns
+      - DNSPLUGIN=route53
+      - EMAIL=kleysoncastro99@gmail.com
+      - DHLEVEL=4096
+    volumes:
+      - ./config:/config
+    ports: 
+      - 443:443
+      - 80:80
+    restart: unless-stopped
